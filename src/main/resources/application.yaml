@@ -1,0 +1,39 @@
+debug: false
+
+
+app:
+  raiqm:
+    queueManager: QM1
+    channel: DEV.ADMIN.SVRCONN
+    connName: localhost(1414)
+    user: admin
+    password: passw0rd
+#    pool:
+#      max-connections: 100
+#      enabled: true
+#      max-sessions-per-connection: 50
+
+
+raifwd:
+  artemis:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
+
+logging:
+  level:
+    org.springframework.transaction.interceptor: TRACE
+    com.ibm.mq.spring.boot: INFO
+
+narayana:
+  messaginghub:
+    enabled: true
+    max-connections: 5
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
