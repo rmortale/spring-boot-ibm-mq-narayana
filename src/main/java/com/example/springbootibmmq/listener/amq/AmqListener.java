@@ -15,7 +15,7 @@ public class AmqListener {
     private final WmqSender sender;
 
     @Transactional
-    @JmsListener(destination = "rai.to.queue.01", concurrency = "10", containerFactory = "vaiListenerContainerFactory")
+    @JmsListener(destination = "rai.to.queue.01", concurrency = "1", containerFactory = "vaiListenerContainerFactory")
     public void handleMessage(String body) {
         log.info("Received msg: {}", body);
         sender.sendToWmqQueue(body);

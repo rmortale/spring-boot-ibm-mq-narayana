@@ -49,6 +49,9 @@ public class MqConfiguration {
             DefaultJmsListenerContainerFactoryConfigurer configurer) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         configurer.configure(factory, vaiConnectionFactory);
+        factory.setErrorHandler(t -> {
+            log.error("Error in listener!", t);
+        });
         return factory;
     }
 
@@ -70,7 +73,7 @@ public class MqConfiguration {
             MQConfigurationProperties raiConfigProperties,
             ObjectProvider<List<MQConnectionFactoryCustomizer>> factoryCustomizers,
             XAConnectionFactoryWrapper wrapper) throws Exception {
-        MQXAConnectionFactory xacf = new MQConnectionFactoryFactory(raiConfigProperties, factoryCustomizers.getIfAvailable())
+        MQXAConnectionFactory xacf = new MQConnectionFactoryFactory(raiConfigProperties, null, factoryCustomizers.getIfAvailable())
                 .createConnectionFactory(MQXAConnectionFactory.class);
         return wrapper.wrapConnectionFactory(xacf);
     }
@@ -81,6 +84,9 @@ public class MqConfiguration {
             DefaultJmsListenerContainerFactoryConfigurer configurer) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         configurer.configure(factory, raiConnectionFactory);
+        factory.setErrorHandler(t -> {
+            log.error("Error in listener!", t);
+        });
         return factory;
     }
 

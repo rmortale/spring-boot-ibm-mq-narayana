@@ -14,6 +14,9 @@ public class AmqSender {
 
     public void sendToAmqQueue(String body) {
         vaiJmsTemplate.convertAndSend("rai.from.queue.01", body);
+        if (body.equalsIgnoreCase("exception")) {
+            throw new IllegalArgumentException("test");
+        }
     }
-    
+
 }

@@ -9,8 +9,8 @@ version: '3'
 # ibm.mq.password=passw0rd
 
 tasks:
-  runMq:
-    desc: run IBM MQ container
+  createmq:
+    desc: create IBM MQ container
     cmds:
       - docker run --env LICENSE=accept --env MQ_QMGR_NAME=QM1 --publish 1414:1414 --publish 9443:9443 ibmcom/mq
 
