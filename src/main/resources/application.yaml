@@ -8,7 +8,6 @@ app:
     connName: localhost(1414)
     user: admin
     password: passw0rd
-
 #    pool:
 #      max-connections: 100
 #      enabled: true
@@ -20,16 +19,18 @@ raifwd:
     user: admin
     password: admin
 
+
 logging:
   level:
-    org.springframework.transaction.interceptor: TRACE
+    org.springframework.transaction.interceptor: INFO
+    org.springframework.jms: INFO
     com.ibm.mq.spring.boot: INFO
     com.arjuna.ats.jta: ERROR
 
 narayana:
   messaginghub:
     enabled: true
-    max-connections: 1
+    max-connections: 5
 
 
 management:

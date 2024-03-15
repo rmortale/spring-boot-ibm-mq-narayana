@@ -34,8 +34,8 @@ public class MqConfiguration {
     }
 
     @Bean
-    ConnectionFactory vaiConnectionFactory(ArtemisProperties vaiProps,
-                                           XAConnectionFactoryWrapper wrapper) throws Exception {
+    public ConnectionFactory vaiConnectionFactory(ArtemisProperties vaiProps,
+                                                  XAConnectionFactoryWrapper wrapper) throws Exception {
         ActiveMQXAConnectionFactory xacf = new ActiveMQXAConnectionFactory(
                 vaiProps.getBrokerUrl(),
                 vaiProps.getUser(),
